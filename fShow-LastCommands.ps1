@@ -1,4 +1,4 @@
-﻿Function fShow-LastCommands {
+Function fShow-LastCommands {
 	<#
 		.NOTES
 			Author: Buchser Roger
@@ -24,13 +24,12 @@
 			$RunTime = $Command.EndExecutionTime - $Command.StartExecutionTime
 			$Obj = New-Object PsObject
 			$Obj | Add-Member NoteProperty -Name 'Execution Time' -Value $Command.EndExecutionTime
-			$Obj | Add-Member NoteProperty -Name 'Executed Command' -Value "[PS] $($Command.CommandLine)"
 			$Obj | Add-Member NoteProperty -Name 'Elapsed Time' -Value "$($RunTime.Seconds) Seconds"
+			$Obj | Add-Member NoteProperty -Name 'Executed Command' -Value "[PS] $($Command.CommandLine)"
 			$Result += $Obj
 		}
-		Return $Result
+		$Result | ft -AutoSize
 	} Else {
 		Write-Host "`nNo Command executed yet...`n" -f DarkYellow
-		Return $Null
 	} 
 }
